@@ -1,3 +1,5 @@
+import './style.css'
+
 import * as THREE from 'three'  //引入threejs 库
 import { addDefaultMeshes } from './addDefaultMeshes';
 
