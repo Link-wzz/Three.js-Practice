@@ -9,7 +9,7 @@ camera.position.set(0,0,5)
 
 //创建meshes对象Object,用于储存所有的meshes
 const meshes = {};
-
+const clock = new THREE.Clock();
 const renderer = new THREE.WebGLRenderer({antialias: true});
 //antialias 为抗锯齿选项
 init()
@@ -23,38 +23,31 @@ function init(){
   //add our meshes to the container then add to scene
   meshes.default = addDefaultMeshes();
   meshes.copy = addDefaultMeshes();
+  meshes.three = addDefaultMeshes();
+  meshes.four = addDefaultMeshes();
+  meshes.five = addDefaultMeshes();
+
+  
+
   scene.add(meshes.default)
+  for (let i in meshes){
+    scene.add(meshes[i])
+  }
   // randomWay("default")
   animate()
 }
 
 function animate(){
   // meshes.default.position.x +=0.1;
-  meshes.default.scale.x +=0.1;
+  meshes.default.position.x = Math.sin(clock.getElapsedTime())
+  meshes.copy.position.y = Math.sin(clock.getElapsedTime())
+  meshes.three.position.set(Math.cos(clock.getElapsedTime()),Math.sin(clock.getElapsedTime()),0);
+  meshes.four.position.y = Math.sin(clock.getElapsedTime())
+  meshes.five.position.y = Math.sin(clock.getElapsedTime())
+
+
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
   
 }
     
-// function randomWay(meshInstance){cont
-//  const n = Math.floor(Math.random()*4);
-//  let direction;
-//  let d = true;
-//  if(n == 0){
-//   direction = x;
-//  }else if(n==1){
-//   direction = y;
-//  }else if(n ==2){
-//   direction = x;
-//   d = false
-//  }else if(n==3){
-//   d = false
-//  }
-
-//  if(d == true){
-//   meshes.meshInstance.position.direction +=0.1;
-
-//  }else{
-//   meshes.meshInstance.position.direction -=0.1;
-//  }
-// }
